@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
 use App\Http\Controllers\ResetController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,7 @@ Route::post('/forgetpassword', [ForgetController::class, 'ForgetPassword']);
 
 // Reset Password
 Route::post('/resetpassword', [ResetController::class, 'ResetPassword']);
+
+//Current user route
+
+Route::get('/user', [UserController::class, 'User'])->middleware('auth:api');
