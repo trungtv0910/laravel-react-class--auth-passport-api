@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Navigate } from 'react-router-dom';
 
 class Profile extends Component {
     render() {
@@ -9,6 +10,10 @@ class Profile extends Component {
             email = this.props.user.email;
 
         }
+        if (!localStorage.getItem('token')) {
+            return <Navigate replace to="/login" />;
+        }
+
         return (
             <div>
                 <br />

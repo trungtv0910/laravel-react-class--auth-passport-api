@@ -12,14 +12,13 @@ import Register from '../components/Register';
 import Forget from '../components/Forget';
 import Profile from '../components/Profile';
 import axios from 'axios';
+import Reset from '../components/Reset';
 
 
 export class Header extends Component {
 
     state = {
-        user: {
-
-        }
+        user: {}
     }
 
     componentDidMount() {
@@ -27,16 +26,10 @@ export class Header extends Component {
         axios.get('/user')
             .then((response) => {
                 this.setUser(response.data);
-                // console.log(response);
-                // localStorage.setItem('token', response.data.token);
-                // this.setState({
-                //     loggedIn: true
-                // })
             })
             .catch((error) => {
                 console.log(error);
             });
-
     }
     setUser = (user) => {
         this.setState({ user: user })
@@ -55,6 +48,7 @@ export class Header extends Component {
                         <Route path="/login" element={<Login user={this.state.user} setUser={this.setUser} />}>  </Route>
                         <Route path="/register" element={<Register user={this.state.user} setUser={this.setUser} />}>  </Route>
                         <Route path="/forget" element={<Forget />}>  </Route>
+                        <Route path="/reset/:id" element={<Reset />}>  </Route>
                         <Route path="/profile" element={<Profile user={this.state.user} />}>  </Route>
 
 
